@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+	<select id="boardList" resultType="com.myshop.dto.BoardDTO">
+		select * from board 
+	</select>
+	
+	<select id="boardPageList" resultType="com.myshop.dto.BoardDTO">
+		select * from board order by bno desc, bdate desc limit #{startPost}, #{bnum} 
+	</select>
+	
+	<select id="boardRead" resultType="com.myshop.dto.BoardDTO">
+		select * from board where bno=#{bno}
+	</select>
+	
+	<select id="latestBoard" resultType="com.myshop.dto.BoardDTO">
+		select * from board order by bdate desc limit 5
+	</select>
+		
+	<select id="boardCount" resultType="integer">
+		select count(*) from board
+	</select>
+	
+	<insert id="addBoard">
+	insert into board(btitle, bcontent, bwriter) values (#{btitle}, #{bcontent}, #{bwriter})
+	</insert>
+	
+	<delete id="deleteBoard">
+		delete from board where bno=#{bno}
+	</delete>	
+	
+	<update id="updateBoard">
+		update board set btitle=#{btitle}, bcontent=#{bcontent}, bdate=now() where bno=#{bno}
+	</update>
+	
+	<update id="viewCountUp">
+		update board set visited=visited+1 where bno=#{bno}
+	</update>
+</mapper>

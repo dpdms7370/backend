@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="payment">
+
+<select id="paymentList" resultType="com.myshop.dto.PaymentDTO">
+	select * from payment where cid=#{cid}
+	</select>
+	
+	<select id="paymentRead" resultType="com.myshop.dto.PaymentDTO">
+	select * from payment where paynum=#{paynum}
+	</select>
+	
+	<select id="paymentCount" resultType="integer">
+	select count(*) from payment where cid=#{cid}
+	</select>
+	
+	<insert id="addPayment">
+	insert into payment(payno, paytool, paycost, paydate, paynum, cid, ctel, cmail, cadd1, cadd2, grade ) values 
+ 	(#{payno}, #{paytool}, #{paycost}, #{paydate}, #{paynum}, #{cid}, #{ctel}, #{cmail}, #{cadd1}, #{addr2}, #{grade}
+	</insert>
+	
+	<update id="addShopping">
+	update payment set transno=#{transno}, transco=#{transco}, rstate=#[rstate}, rdate=#{rdate} where ono=#{ono}
+	</update>
+	
+	<delete id="deletePayment">
+	delete from payment where paynum=#{paynum} and cid=#{cid}
+	</delete>	
+	
+	<update id="updatePayment">
+	update payment set paynum=#{paynum}, ctel=#{ctel}, cadd1=#{cadd1}, cadd2=#{cadd2} where cid=#{cid}	
+	</update>
+	
+	
+	</mapper>

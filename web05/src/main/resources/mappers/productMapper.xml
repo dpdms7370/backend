@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<select id="productList" resultType="com.myshop.dto.ProductDTO">
+		select * from product 
+	</select>
+	
+	<select id="productDetail" resultType="com.myshop.dto.ProductDTO">
+		select * from product where pno=#{pno}
+	</select>
+	
+	<select id="getProduct" resultType="com.myshop.dto.ProductDTO">
+		select * from product where pno=#{pno}
+	</select>
+	
+	<select id="latestProduct" resultType="com.myshop.dto.ProductDTO">
+		select * from product order by pcode desc limit 5
+	</select>
+	
+	<select id="bestProduct" resultType="com.myshop.dto.ProductDTO">
+		<!-- 판매 테이블에서 팔린 개수가 많은 5개 상품을 상품 테이블에 찾아 출력 --> 
+	</select>
+	
+	<select id="chuProduct" resultType="com.myshop.dto.ProductDTO">
+		<!-- 관리자가 추천 상품을 등록하여 그 정보와 일치하는 상품을 상품테이블에 찾아 출력 --> 
+	</select>
+	
+	<select id="ProductCount" resultType="integer">
+		select count(*) from product
+	</select>
+	
+	<insert id="addProduct">
+	insert into product(pcode, pname, pcost, pcok, pamunt, pimg1) values (#{pcode}, #{pname}, #{pcost}, #{pcok}, #{pamunt}, #{pimg1})
+	</insert>
+	
+	<delete id="deleteProduct">
+		delete from product where pno=#{pno}
+	</delete>	
+	
+	<update id="updateProduct">
+		update product set pname=#{pname}, pcode=#{pcode}, pcost=#{pcost}, pcok=#{pcok}, =#{gdes}, pimg1=#{pimg1}, pimg2=#{pimg2}, come=(current_date) from pno=#{pno}
+	</update>
+	
+	<insert id="addCategory">
+		insert into category values (#{cname}, #{ccode}, #{ccoderef})
+	</insert>
+</mapper>

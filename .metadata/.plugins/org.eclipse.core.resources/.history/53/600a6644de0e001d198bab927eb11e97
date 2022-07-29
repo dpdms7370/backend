@@ -1,0 +1,15 @@
+package com.myshop.test;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Repository;
+
+import lombok.extern.log4j.Log4j;
+
+
+@Repository
+public class EncodingTest1 {
+	public static void main(String[] args) {
+		BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
+		System.out.println(passEncoder.encode("e1234")); 
+	}
+}
